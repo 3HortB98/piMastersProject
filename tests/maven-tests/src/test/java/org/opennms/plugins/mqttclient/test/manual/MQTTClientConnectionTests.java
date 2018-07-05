@@ -126,7 +126,7 @@ public class MQTTClientConnectionTests {
 			if(client!=null) client.destroy();
 		}
 
-		LOG.debug("end of test testSimpleConnection() ");
+		LOG.debug("end of test testSimpleConnection()");
 	}
 
 
