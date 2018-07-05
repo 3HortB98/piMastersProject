@@ -7,7 +7,12 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <pi4j.version>1.1</pi4j.version>
+    <json-simple-version>1.1.1</json-simple-version>
+    <paho-version>1.0.2 </paho-version>
+    <slf4jVersion>1.7.21</slf4jVersion>
+    <log4j2Version>2.8.2</log4j2Version>
   </properties>
   <build>
 
@@ -38,32 +43,90 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18</version>
+        <configuration>
+          <excludes>
+            <!-- prevent tests running in this package. These are manual one off development tests -->
+            <exclude>**/manual/*.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
   <dependencies>
     <dependency>
       <groupId>com.pi4j</groupId>
       <artifactId>pi4j-core</artifactId>
       <version>${pi4j.version}</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.pi4j</groupId>
       <artifactId>pi4j-gpio-extension</artifactId>
       <version>${pi4j.version}</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.pi4j</groupId>
       <artifactId>pi4j-device</artifactId>
       <version>${pi4j.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>${json-simple-version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.paho</groupId>
+      <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+      <version>${paho-version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- log4j -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2Version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2Version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-1.2-api</artifactId>
+      <version>${log4j2Version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j2Version}</version>
+      <scope>compile</scope>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.0</version>
-      <scope>test</scope>
+      <scope>compile</scope>
     </dependency>
+
   </dependencies>
+
   <pluginRepositories>
     <pluginRepository>
       <id>onejar-maven-plugin.googlecode.com</id>
