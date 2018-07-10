@@ -5,11 +5,10 @@ public class GPioTest {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException{
 		// TODO Auto-generated method stub
-		TempSensor sensor = new TempSensor();
-		sensor.getTempSensor();
-
+		ButtonLED bPress = new ButtonLED();
+		bPress.getButtonPress();
 	}
 
 }

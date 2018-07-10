@@ -7,9 +7,9 @@ import org.junit.Test;
 public class Test1 {
 
 	@Test
-	public void test() {
-		TempSensor sensor = new TempSensor();
-		sensor.getTempSensor();
+	public void test() throws InterruptedException{
+		ButtonLED bPress = new ButtonLED();
+		bPress.getButtonPress();
 	}
 
 }
