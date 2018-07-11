@@ -23,14 +23,18 @@ public class ButtonLED {
 		
 		final GpioController gpio = GpioFactory.getInstance();
 		
-		final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_17,
+		final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,
                 PinPullResistance.PULL_DOWN);
 		
-		System.out.println(" ... complete the GPIO #17 circuit and see the triggers take effect.");
+		System.out.println(" ... complete the GPIO #02 circuit and see the triggers take effect.");
 		
-		final GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_18, "LED #1", PinState.LOW);
+		myButton.setShutdownOptions(true);
 		
-		 myButton.addListener(new GpioPinListenerDigital()
+		final GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "LED #1", PinState.LOW);
+		
+		
+		
+		myButton.addListener(new GpioPinListenerDigital()
 			{
 	            @Override
 	            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event)
@@ -46,6 +50,8 @@ public class ButtonLED {
 		
 		
 		myButton.addTrigger(new GpioSetStateTrigger(PinState.HIGH, myLed, PinState.HIGH));
+		
+		myButton.addTrigger(new GpioSetStateTrigger(PinState.LOW, myLed, PinState.LOW));
 		
 		myButton.addTrigger(new GpioCallbackTrigger(new Callable<Void>() {
 			@Override
