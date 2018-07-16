@@ -1,4 +1,4 @@
-package com.test.gpio;
+package com.test.gpio.manual;
 
 import static org.junit.Assert.*;
 

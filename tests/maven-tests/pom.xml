@@ -77,12 +77,6 @@
       <version>${pi4j.version}</version>
       <scope>compile</scope>
     </dependency>
-    
-	<dependency>
-    	<groupId>com.pi4j</groupId>
-    	<artifactId>pi4j-core</artifactId>
-   		<version>1.2-SNAPSHOT</version>
-	</dependency>
 	
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
@@ -128,7 +122,7 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.0</version>
-      <scope>compile</scope>
+      <scope>test</scope>
     </dependency>
 
 <!--     <dependency> -->
