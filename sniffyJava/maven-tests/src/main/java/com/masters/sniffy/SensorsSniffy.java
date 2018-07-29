@@ -10,7 +10,9 @@ import com.pi4j.util.Console;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Properties;
 import java.util.TimeZone;
@@ -78,8 +80,35 @@ public class SensorsSniffy {
 			public void dataReceived(SerialDataEvent event) 
 			{
 				try{
-                    console.println("[HEX DATA]   " + event.getHexByteString());
-                    console.println("[ASCII DATA] " + event.getAsciiString());
+					console.println("[HEX DATA]   " + event.getHexByteString());
+					String hexbyte = event.getHexByteString();
+					String hexbytenospace = hexbyte.replaceAll("\\s","");
+					String[] hexbytearray = hexbytenospace.split(",");
+					int[] hex = new int[hexbytearray.length];
+					int i=0;
+					for (String h : hexbytearray){
+						int hexint = Integer.parseInt(h,16);
+						hex[i] = hexint;
+						i++;
+					}
+					 String messagetest = "{"
+							+ " \"time\": \""+ jsonTime(new Date())+ "\","
+							+ " \"id\": \"monitorID\","
+							+ " \"cityName\": \"Southampton\","
+							+ " \"stationName\": \"Common#1\","
+							+ " \"latitude\": 0,"
+							+ " \"longitude\": 0,"
+							+ " \"averaging\": 0,"
+							+ " \"PM1\": "+ (hex[3] * 256 + hex[4]) +","
+							+ " \"PM25\": "+ (hex[5] * 256 + hex[6]) +","
+							+ " \"PM10\": "+ (hex[7] * 256 + hex[8])
+							+ "}";
+					 console.println("[Message]	" + messagetest);
+					//testing to see what hex values are in array correctly
+                    for (int j=0; j<hex.length; j++){
+                    	console.println("[Hex value "+ j + "]	" + hex[j]);
+                    }
+                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
