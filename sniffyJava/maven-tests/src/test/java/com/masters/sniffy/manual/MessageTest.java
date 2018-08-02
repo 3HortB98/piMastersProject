@@ -11,7 +11,7 @@ public class MessageTest {
 	@Test
 	public void test() {
 		SensorsSniffy buttonLED = new SensorsSniffy();
-		buttonLED.sendMessage();
+		
 	}
 
 }

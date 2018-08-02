@@ -7,6 +7,8 @@ import com.pi4j.io.serial.*;
 import com.pi4j.util.CommandArgumentParser;
 import com.pi4j.util.Console;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,11 +59,15 @@ public class SensorsSniffy {
 
 	private static final String PROPERTIES_FILE_NAME = "./mqttproperties.properties";
 	
-	
+	private static final String CSVFILENAME = "./sensorcsv.csv";
 
 
 	public static void main(String args[]) throws InterruptedException, IOException {
 
+		final SensorsSniffy sniffy = new SensorsSniffy();
+		
+		
+		
 		// create Pi4J console wrapper/helper
 		final Console console = new Console();
 		
@@ -80,8 +86,56 @@ public class SensorsSniffy {
 			public void dataReceived(SerialDataEvent event) 
 			{
 				try{
-					console.println("[HEX DATA]   " + event.getHexByteString());
-					String hexbyte = event.getHexByteString();
+					//console.println("[HEX DATA]   " + event.getHexByteString());
+					
+					byte[] rxBytes=event.getBytes();
+					
+					if(rxBytes[0] == 66){
+						
+						if(rxBytes[1]== 77){
+							String pm1= Integer.toString(rxBytes[4]+256*rxBytes[5]);
+							String pm25= Integer.toString(rxBytes[6]+256*rxBytes[7]);
+							String pm10= Integer.toString(rxBytes[8]+256*rxBytes[9]);
+							String tMessage = "{"
+									+ " \"time\": \""+ jsonTime(new Date())+ "\","
+									+ " \"id\": \"monitorID\","
+									+ " \"cityName\": \"Southampton\","
+									+ " \"stationName\": \"Common#1\","
+									+ " \"latitude\": 0,"
+									+ " \"longitude\": 0,"
+									+ " \"averaging\": 0,"
+									+ " \"PM1\": "+ pm1 +","
+									+ " \"PM25\": "+ pm25 +","
+									+ " \"PM10\": "+ pm10
+									+ "}";
+							 console.println("[Message]	" + tMessage);
+							 
+							 //sniffy.sendMessage(tMessage);
+							 
+							 try{
+								 File file = new File(CSVFILENAME);
+								 if(!file.exists()){
+									 file.createNewFile();
+								 }
+								 FileWriter fw = new FileWriter(file,true);
+								 BufferedWriter bw = new BufferedWriter(fw);
+								 bw.write(tMessage);
+								 bw.newLine();
+								 bw.close();
+							 }catch(IOException e){
+								 e.printStackTrace();
+							 }
+							 try{
+							Thread.sleep(30000);
+							 }catch(InterruptedException e){
+								 console.println("System got inturrpted");
+							 }
+						}
+					}else{
+						console.println("not found");
+					}
+							
+					/*String hexbyte = event.getHexByteString();
 					String hexbytenospace = hexbyte.replaceAll("\\s","");
 					String[] hexbytearray = hexbytenospace.split(",");
 					int[] hex = new int[hexbytearray.length];
@@ -90,8 +144,8 @@ public class SensorsSniffy {
 						int hexint = Integer.parseInt(h,16);
 						hex[i] = hexint;
 						i++;
-					}
-					 String messagetest = "{"
+					}*/
+					/*String tMessage = "{"
 							+ " \"time\": \""+ jsonTime(new Date())+ "\","
 							+ " \"id\": \"monitorID\","
 							+ " \"cityName\": \"Southampton\","
@@ -102,12 +156,13 @@ public class SensorsSniffy {
 							+ " \"PM1\": "+ (hex[3] * 256 + hex[4]) +","
 							+ " \"PM25\": "+ (hex[5] * 256 + hex[6]) +","
 							+ " \"PM10\": "+ (hex[7] * 256 + hex[8])
-							+ "}";
-					 console.println("[Message]	" + messagetest);
+							+ "}";*/
+					
+					 
 					//testing to see what hex values are in array correctly
-                    for (int j=0; j<hex.length; j++){
+                    /*for (int j=0; j<hex.length; j++){
                     	console.println("[Hex value "+ j + "]	" + hex[j]);
-                    }
+                    }*/
                     
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -197,7 +252,7 @@ public class SensorsSniffy {
 	}
 
 
-	public void sendMessage() {
+	public void sendMessage(String messaged) {
 		LOG.debug("sending message ");
 
 		Properties properties = new Properties();
@@ -247,7 +302,8 @@ public class SensorsSniffy {
 				LOG.debug("problem subscribing", e);
 			}
 
-			String message = jsonTestMessage;
+			//String message = jsonTestMessage;
+			String message = messaged;
 
 			byte[] payload =null;
 			for (int i=0;i<1;i++) {
