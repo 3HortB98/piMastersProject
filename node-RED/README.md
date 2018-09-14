@@ -75,7 +75,11 @@ click ok
 click anwhere on the canvas to place done.
 click deploy to run
 
-## Configuring the flow
- check serial port
- check MQTT
-
+## Configuring the flow before deploy
+ check serial port is connecte to the right port. 
+  should be `/dev/ttyAMA0` if you have swapped the ports as done above. if you have not swapped ports. it should be `/dev/ttyS0` 
+  
+ check MQTT node is set up correctly:
+  check its connected to the correct server. Ip addresss needed.
+  check Secuirty of server
+if wanted, directory of the CSV file can be changed. if not if changed it will create the csv file in /home/pi/Documents/data/datafiletest.csv
