@@ -32,6 +32,15 @@ instead of:
 sudo wget http://repo.mosquitto.org/debian/mosquitto-wheezy.list
 sudo wget http://repo.mosquitto.org/debian/mosquitto-jessie.list
 ```
+ To test:
+ 
+ use mosquitto_sub to subscribe to a topic:
+
+```mosquitto mosquitto_sub -t 'test/topic' -v```
+
+And to publish a message:
+
+```mosquitto mosquitto_pub -t 'test/topic' -m 'hello world'```
 
 ## Node-Red Set Up
 Below is instructions on how to set up this solution.
