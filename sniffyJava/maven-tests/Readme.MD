@@ -27,6 +27,6 @@ And to publish a message:
 ```mosquitto mosquitto_pub -t 'test/topic' -m 'hello world'```
 
 ## main file
-The main java file is [SensorsSniffy.java](piMastersProject/sniffyJava/maven-tests/src/main/java/com/masters/sniffy/SensorsSniffy.java )
+The main java file is [SensorsSniffy.java](src/main/java/com/masters/sniffy/SensorsSniffy.java )
 
 this works but does contain some irrelvant commented code
