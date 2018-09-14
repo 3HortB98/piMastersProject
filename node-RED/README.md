@@ -60,7 +60,7 @@ on the web UI:
 
 Menu > Import > Clipboard
 
-copy the text from the file on here
+copy the text from the ` 	nodeREDflow.txt` file on here
 paste into that clipboard.
 click ok
 click anwhere on the canvas to place done.
