@@ -80,6 +80,8 @@ click deploy to run
   should be `/dev/ttyAMA0` if you have swapped the ports as done above. if you have not swapped ports. it should be `/dev/ttyS0` 
   
  check MQTT node is set up correctly:
-  check its connected to the correct server. Ip addresss needed.
-  check Secuirty of server
+ - check its connected to the correct server. Ip addresss needed.
+ 
+ - check Secuirty of server
+  
 if wanted, directory of the CSV file can be changed. if not if changed it will create the csv file in /home/pi/Documents/data/datafiletest.csv
