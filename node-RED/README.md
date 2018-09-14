@@ -8,10 +8,12 @@ The text file contains the JSON text that is needed to import the flows into you
 Menu -> prefrences -> Raspberry Pi Configuration -> interfaces
 
 SPI **enabled**
-I2C **enabled**
-Serial port **enabled**
-1-wire **enabled**
 
+I2C **enabled**
+
+Serial port **enabled**
+
+1-wire **enabled**
 
 
  ### Serial port
