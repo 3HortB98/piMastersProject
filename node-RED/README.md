@@ -7,13 +7,13 @@ The text file contains the JSON text that is needed to import the flows into you
  ### Raspbery Pi Configuration
 Menu -> prefrences -> Raspberry Pi Configuration -> interfaces
 
-SPI **enabled**
+SPI --**enabled**
 
-I2C **enabled**
+I2C --**enabled**
 
-Serial port **enabled**
+Serial port --**enabled**
 
-1-wire **enabled**
+1-wire --**enabled**
 
 
  ### Serial port
