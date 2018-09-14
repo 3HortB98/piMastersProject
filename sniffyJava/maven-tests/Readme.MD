@@ -1,22 +1,32 @@
+#Java solution
 
-# To run MQTT Tests
+## This is the folders and files for the java solution used in this project
 
-# use external moquette java MQTT broker
+Eclipse IDE was used to create this
 
-https://github.com/andsel/moquette
+### MQTT Set up
+this is for mosquitto MQTT
+Instructions can be found [here](https://mosquitto.org/blog/2013/01/mosquitto-debian-repository/)
+For an updated version of debian use:
+ ```
+ sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+ ```
+instead of:
+```
+sudo wget http://repo.mosquitto.org/debian/mosquitto-wheezy.list
+sudo wget http://repo.mosquitto.org/debian/mosquitto-jessie.list
+```
+ To test:
  
-download  from here
-https://bintray.com/artifact/download/andsel/generic/moquette-distribution-0.11.tar
+ use mosquitto_sub to subscribe to a topic:
 
-unpack moquette-distribution-0.11.tar
-tar zxf moquette-distribution-0.11.tar
+```mosquitto mosquitto_sub -t 'test/topic' -v```
 
-in unpacked directory, add an additional config directory and an empty moquette.conf file
-moquette-distribution-0.11/bin/config/moquette.conf
+And to publish a message:
 
-run server using
-./moquette.sh
+```mosquitto mosquitto_pub -t 'test/topic' -m 'hello world'```
 
-This creates an mqtt broker at tcp://localhost:1883
+## main file
+The main java file is [SensorsSniffy.java](piMastersProject/sniffyJava/maven-tests/src/main/java/com/masters/sniffy/SensorsSniffy.java )
 
-# in eclipse, right click MQTTClientConnectionTests and run as unit test
+this works but does contain some irrelvant commented code
