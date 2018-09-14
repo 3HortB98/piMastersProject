@@ -5,7 +5,15 @@ The text file contains the JSON text that is needed to import the flows into you
 ## Raspberry Pi pre-requirements 
  For the solution to work make sure the following is set up:
  ### Raspbery Pi Configuration
- 
+Menu -> prefrences -> Raspberry Pi Configuration -> interfaces
+
+SPI **enabled**
+I2C **enabled**
+Serial port **enabled**
+1-wire **enabled**
+
+
+
  ### Serial port
  On the Raspberry Pi 3. There are 2 serial ports: `/dev/ttyAMA0` and `/dev/ttyS0`. 
  
