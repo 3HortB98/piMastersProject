@@ -16,8 +16,18 @@ The text file contains the JSON text that is needed to import the flows into you
  ```
  and add
  `dtoverlay=pi3-miniuart-bt`
- ### MQTT Set up
  
+ ### MQTT Set up
+ this is for mosquitto MQTT
+Instructions can be found [here](https://mosquitto.org/blog/2013/01/mosquitto-debian-repository/)
+For an updated version of debian use:
+ ```sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list```
+instead of:
+```
+sudo wget http://repo.mosquitto.org/debian/mosquitto-wheezy.list
+sudo wget http://repo.mosquitto.org/debian/mosquitto-jessie.list
+```
+
 ## Node-Red Set Up
 Below is instructions on how to set up this solution.
 
@@ -29,7 +39,8 @@ use command:
 
 ## Starting node-red
   1. Run Node-Red.
-  2. Console window should appear
+  2. Node-RED Console window should appear
+  3. Following insturctions on there, you can open their web UI on the internet.
   
 ## Adding the Dashboard Libray
   [dashboard library](https://flows.nodered.org/node/node-red-dashboard)
