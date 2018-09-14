@@ -8,8 +8,11 @@ The text file contains the JSON text that is needed to import the flows into you
  
  ### Serial port
  On the Raspberry Pi 3. There are 2 serial ports: `/dev/ttyAMA0` and `/dev/ttyS0`. 
+ 
  `/dev/ttyAMA0` is used for bluetooth.
+ 
  `/dev/ttyS0` is used for GPIO Serial port.
+ 
  `/dev/ttyAMA0` has high performance and as bluetooth was not being used. serial ports were swapped. This was done by adding a line to the /boot/config.txt.
  ```
  $ sudo nano /boot/config.txt
@@ -21,7 +24,9 @@ The text file contains the JSON text that is needed to import the flows into you
  this is for mosquitto MQTT
 Instructions can be found [here](https://mosquitto.org/blog/2013/01/mosquitto-debian-repository/)
 For an updated version of debian use:
- ```sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list```
+ ```
+ sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+ ```
 instead of:
 ```
 sudo wget http://repo.mosquitto.org/debian/mosquitto-wheezy.list
